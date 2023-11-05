@@ -6,7 +6,7 @@ export class Router {
    } 
 
    route(event) {
-      event = event
+      event = event || window.event;
       event.preventDefault();
 
       window.history.pushState({}, "", event.target.href);
@@ -18,7 +18,6 @@ export class Router {
       const { pathname } = window.location;
       const route = this.routes[pathname];
 
-      console.log(route.page);
       fetch(route.page)
       .then(data =>  data.text())
       .then(html => {
