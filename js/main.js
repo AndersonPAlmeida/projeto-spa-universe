@@ -13,9 +13,17 @@ window.onpopstate = () => router.handle();
 window.route = () => router.route();
 
 links.forEach(link => {
-   link.addEventListener('click', () => {
+   link.addEventListener('click', (event) => {
+      event.preventDefault();
       removeActive();
-      link.classList.add('active');
+
+      if (link.querySelector('img')) {
+         link.parentElement.nextElementSibling.firstElementChild.classList.add('active');
+      }
+      else {
+         link.classList.add('active');
+      }
+      router.route(link.getAttribute('href'));
    });
 });
 

@@ -5,11 +5,8 @@ export class Router {
       this.routes[routeName] = {page, background};
    } 
 
-   route(event) {
-      event = event || window.event;
-      event.preventDefault();
-
-      window.history.pushState({}, "", event.target.href);
+   route(href) {
+      window.history.pushState({}, "", href);
 
       this.handle();
    }
